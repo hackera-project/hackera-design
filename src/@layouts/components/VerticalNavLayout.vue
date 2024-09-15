@@ -58,6 +58,7 @@ const verticalNavAttrs = computed(() => {
 <template>
   <div
     class="layout-wrapper"
+    style="background-color: #efefef;"
     :class="configStore._layoutClasses"
   >
     <component
