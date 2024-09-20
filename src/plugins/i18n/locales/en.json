@@ -2,5 +2,15 @@
   "programs": "Programs",
   "reports": "Reports",
   "leaderboard": "Leaderboard",
-  "profile": "Profile"
+  "profile": "Profile",
+  "company-profile": "Company Profile",
+  "create-program": "Create Program",
+  "title": "Title",
+  "create": "Create",
+  "cancel": "Cancel",
+  "add-program": "Add Program",
+  "general": "General",
+  "assets": "Assets",
+  "scope-exclusions": "Scope Exclusions",
+  "payments": "Payments"
 }

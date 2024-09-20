@@ -1,0 +1,68 @@
+<script lang="ts" setup>
+const { t } = useI18n()
+
+const headers = [
+  { title: t('title'), key: 'title' },
+  { title: t('assets'), key: 'assets' },
+  { title: t('paid'), key: 'paid' },
+  { title: t('reports'), key: 'reports' },
+  { title: t('actions'), key: 'actions' },
+]
+
+const items = [
+  { title: 'Test bug bounty 1', assets: 45, paid: 3000, reports: 120 },
+  { title: 'Test bug bounty 2', assets: 20, paid: 100, reports: 20 },
+  { title: 'Test bug bounty 3', assets: 4, paid: 90, reports: 25 },
+  { title: 'Test bug bounty 4', assets: 5, paid: 300, reports: 9 },
+]
+</script>
+
+<template>
+  <VCard>
+    <template #title>
+      <div class="d-flex justify-space-between align-center">
+        <VCardTitle>
+          {{ $t('programs') }}
+        </VCardTitle>
+        <VBtn
+          size="small"
+          prepend-icon="tabler-plus"
+        >
+          {{ $t('add-program') }}
+        </VBtn>
+      </div>
+    </template>
+
+    <VCardText>
+      <VDataTable
+        :headers
+        :items
+      >
+        <template #item.actions="{ item }">
+          <div class="d-flex">
+            <VBtn
+              icon
+              variant="text"
+              size="small"
+            >
+              <VIcon icon="tabler-pencil" />
+            </VBtn>
+            <VBtn
+              icon
+              variant="text"
+              size="small"
+              color="error"
+            >
+              <VIcon icon="tabler-trash" />
+            </VBtn>
+          </div>
+        </template>
+        <template #bottom>
+          <div class="d-flex justify-end mt-4">
+            <VPagination length="7" />
+          </div>
+        </template>
+      </VDataTable>
+    </VCardText>
+  </VCard>
+</template>

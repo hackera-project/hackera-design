@@ -29,6 +29,10 @@ const router = createRouter({
       path: '/',
       redirect: '/hacker/programs',
     },
+    {
+      path: '/company',
+      redirect: '/company/programs',
+    },
     ...[...pages].map(route => recursiveLayouts(route)),
   ],
 })

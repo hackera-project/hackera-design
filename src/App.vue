@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useTheme } from 'vuetify'
+import { useDialogStore } from './stores/dialog'
 import ScrollToTop from '@core/components/ScrollToTop.vue'
 import initCore from '@core/initCore'
 import { initConfigStore, useConfigStore } from '@core/stores/config'
@@ -12,6 +13,9 @@ initCore()
 initConfigStore()
 
 const configStore = useConfigStore()
+
+const { isOpen: isOpenDialog, width: widthDialog, component: dialogComponent } = storeToRefs(useDialogStore())
+const { closeDialog } = useDialogStore()
 </script>
 
 <template>
@@ -20,6 +24,13 @@ const configStore = useConfigStore()
     <VApp :style="`--v-global-theme-primary: ${hexToRgb(global.current.value.colors.primary)}`">
       <RouterView />
 
+      <VDialog
+        v-model="isOpenDialog"
+        :width="widthDialog"
+      >
+        <DialogCloseBtn @click="closeDialog" />
+        <Component :is="dialogComponent" />
+      </VDialog>
       <ScrollToTop />
     </VApp>
   </VLocaleProvider>

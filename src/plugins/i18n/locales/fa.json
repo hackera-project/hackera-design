@@ -2,5 +2,15 @@
   "programs": "برنامه‌ها",
   "reports": "گزارش‌ها",
   "leaderboard": "برترین‌ها",
-  "profile": "پروفایل"
+  "profile": "پروفایل",
+  "company-profile": "پروفایل شرکت",
+  "create-program": "ساخت پروگزم",
+  "title": "عنولن",
+  "create": "ساخت",
+  "cancel": "انصراف",
+  "add-program": "اضافه کردن پرگرم",
+  "general": "اطلاعات عمومی",
+  "assets": "ابزارها",
+  "scope-exclusions": "Scope Exclusions",
+  "payments": "پرداخت‌ها"
 }
