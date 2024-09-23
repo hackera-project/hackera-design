@@ -12,5 +12,13 @@
   "general": "General",
   "assets": "Assets",
   "scope-exclusions": "Scope Exclusions",
-  "payments": "Payments"
+  "payments": "Payments",
+  
+  "add-asset": "Add Asset",
+  "edit-asset": "Edit Asset",
+  "create-asset": "Create Asset",
+  "type": "Type",
+  "value": "Value",
+  "max-severity": "Max Severity",
+  "save": "Save"
 }

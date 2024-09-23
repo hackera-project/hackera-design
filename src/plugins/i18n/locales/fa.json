@@ -12,5 +12,13 @@
   "general": "اطلاعات عمومی",
   "assets": "ابزارها",
   "scope-exclusions": "Scope Exclusions",
-  "payments": "پرداخت‌ها"
+  "payments": "پرداخت‌ها",
+  
+  "add-asset": "اضافه کردن Asset",
+  "edit-asset": "ویرایش کردن Asset",
+  "create-asset": "ساختن Asset",
+  "type": "نوع",
+  "value": "مقدار",
+  "max-severity": "حداکثر شدت",
+  "save": "ذخیره"
 }
