@@ -4,11 +4,11 @@ import { useDialogStore } from '@/stores/dialog'
 const { t } = useI18n()
 
 const headers = [
-  { title: t('title'), key: 'title' },
-  { title: t('assets'), key: 'assets' },
-  { title: t('paid'), key: 'paid' },
-  { title: t('reports'), key: 'reports' },
-  { title: t('actions'), key: 'actions' },
+  { title: t('title'), key: 'title', sortable: false },
+  { title: t('assets'), key: 'assets', sortable: false },
+  { title: t('paid'), key: 'paid', sortable: false },
+  { title: t('reports'), key: 'reports', sortable: false },
+  { title: t('actions'), key: 'actions', sortable: false },
 ]
 
 const items = [
@@ -49,6 +49,7 @@ const { openDialog } = useDialogStore()
               icon
               variant="text"
               size="small"
+              to="/company/programs/1"
             >
               <VIcon icon="tabler-pencil" />
             </VBtn>

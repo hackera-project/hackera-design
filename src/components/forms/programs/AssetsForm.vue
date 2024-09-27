@@ -19,7 +19,10 @@ const { openDrawer } = useDrawerStore()
 
 <template>
   <div>
-    <div class="d-flex justify-end mb-4">
+    <div class="d-flex justify-space-between align-center mb-4">
+      <div class="text-h5">
+        {{ $t('assets') }}
+      </div>
       <VBtn
         prepend-icon="tabler-plus"
         @click="() => openDrawer('asset-store', $t('create-asset'))"

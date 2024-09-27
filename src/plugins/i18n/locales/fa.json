@@ -20,5 +20,12 @@
   "type": "نوع",
   "value": "مقدار",
   "max-severity": "حداکثر شدت",
-  "save": "ذخیره"
+  "save": "ذخیره",
+  "program-description": "توضیحات پروگرم",
+  "deadline": "ددلاین",
+  "low-severity": "Low Severity",
+  "medium-severity": "Medium Severity",
+  "high-severity": "High Severity",
+  "critical-severity": "Critical Severity",
+  "enable": "فعال"
 }
