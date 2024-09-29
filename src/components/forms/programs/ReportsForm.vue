@@ -9,11 +9,24 @@ const headers = [
 ]
 
 const items = [
-  { asset: 'digikala.com', reported_by: 'Mammad', reported_at: '2022-12-03 14:20', status: 'in-porgress', payment: '150' },
+  { asset: 'digikala.com', reported_by: 'Mammad', reported_at: '2022-12-03 14:20', status: 'in-progress', payment: '150' },
   { asset: 'google.com', reported_by: 'Ali', reported_at: '2022-12-03 14:20', status: 'pending', payment: '' },
   { asset: 'com.android.cafebazar', reported_by: 'Asghar', reported_at: '2022-12-03 14:20', status: 'closed', payment: '400' },
   { asset: '*.mtn.ir', reported_by: 'Akbar', reported_at: '2022-12-03 14:20', status: 'rejected', payment: '' },
 ]
+
+const getStatusColor = (status: string) => {
+  if (status === 'pending')
+    return 'warning'
+
+  if (status === 'rejected')
+    return 'error'
+
+  if (status === 'closed')
+    return 'success'
+
+  return 'info'
+}
 </script>
 
 <template>
@@ -28,10 +41,19 @@ const items = [
       :items
       hover
     >
+      <template #item.status="{ item }">
+        <VChip
+          :label="false"
+          :color="getStatusColor(item.status)"
+        >
+          {{ $t(item.status) }}
+        </VChip>
+      </template>
       <template #item.action>
         <VBtn
           icon
           variant="text"
+          to="/reports/1"
         >
           <VIcon icon="tabler-eye" />
         </VBtn>

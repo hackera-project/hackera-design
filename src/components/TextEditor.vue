@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
+import { BulletList } from '@tiptap/extension-bullet-list'
 import { Placeholder } from '@tiptap/extension-placeholder'
+import { Link } from '@tiptap/extension-link'
 import { TextAlign } from '@tiptap/extension-text-align'
 import { Underline } from '@tiptap/extension-underline'
+import { Heading } from '@tiptap/extension-heading'
 import { StarterKit } from '@tiptap/starter-kit'
 import { EditorContent, useEditor } from '@tiptap/vue-3'
 
 import { all, createLowlight } from 'lowlight'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: string
   placeholder?: string
-}>()
+  preview: boolean
+}>(), { preview: false })
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
@@ -32,6 +36,9 @@ const editor = useEditor({
     }),
     Underline,
     CodeBlockLowlight.configure({ lowlight }),
+    Heading,
+    BulletList,
+    Link,
   ],
   onUpdate() {
     if (!editor.value)
@@ -39,7 +46,37 @@ const editor = useEditor({
 
     emit('update:modelValue', editor.value.getHTML())
   },
+  editable: !props.preview,
 })
+
+const setLink = () => {
+  const previousUrl = editor.value?.getAttributes('link').href
+  const url = window.prompt('URL', previousUrl)
+
+  // cancelled
+  if (url === null)
+    return
+
+  // empty
+  if (url === '') {
+    editor.value
+      ?.chain()
+      .focus()
+      .extendMarkRange('link')
+      .unsetLink()
+      .run()
+
+    return
+  }
+
+  // update link
+  editor.value
+    ?.chain()
+    .focus()
+    .extendMarkRange('link')
+    .setLink({ href: url })
+    .run()
+}
 
 watch(() => props.modelValue, () => {
   const isSame = editor.value?.getHTML() === props.modelValue
@@ -52,9 +89,9 @@ watch(() => props.modelValue, () => {
 </script>
 
 <template>
-  <div class="border">
+  <div :class="{ border: !preview }">
     <div
-      v-if="editor"
+      v-if="editor && !preview"
       class="d-flex gap-2 py-2 px-6 flex-wrap align-center editor"
     >
       <IconBtn
@@ -149,9 +186,16 @@ watch(() => props.modelValue, () => {
       >
         <VIcon icon="tabler-code" />
       </IconBtn>
+
+      <button
+        :class="{ 'is-active': editor.isActive('link') }"
+        @click="setLink"
+      >
+        Set link
+      </button>
     </div>
 
-    <VDivider />
+    <VDivider v-if="!preview" />
 
     <EditorContent
       ref="editorRef"
@@ -163,7 +207,6 @@ watch(() => props.modelValue, () => {
 <style lang="scss">
 .ProseMirror {
   padding: 0.5rem;
-  min-block-size: 15vh;
   outline: none;
 
   p {
@@ -250,6 +293,26 @@ watch(() => props.modelValue, () => {
 
     .hljs-strong {
       font-weight: 700;
+    }
+  }
+
+  ul,
+  ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+
+    li p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
+  }
+
+  a {
+    color: #6A00F5;
+    cursor: pointer;
+
+    &:hover {
+      color: #5800CC;
     }
   }
 }

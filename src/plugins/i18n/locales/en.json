@@ -26,5 +26,22 @@
   "medium-severity": "Medium Severity",
   "high-severity": "High Severity",
   "critical-severity": "Critical Severity",
-  "enable": "Enable"
+  "enable": "Enable",
+  "in-progress": "In Progress",
+  "closed": "Closed",
+  "rejected": "Rejected",
+  "pending": "Pending",
+  "name": "Name",
+  "username": "Username",
+  "email": "Email",
+  "website": "Website",
+  "linkedin": "Linkedin",
+  "x": "X",
+  "github": "Github",
+  "gitlab": "Gitlab",
+  "social-media": "Social Media",
+  "reported-at": "Reported at",
+  "reported-by": "Reported by",
+  "visibility": "Visibility",
+  "severity": "Severity"
 }

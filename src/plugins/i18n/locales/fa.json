@@ -27,5 +27,13 @@
   "medium-severity": "Medium Severity",
   "high-severity": "High Severity",
   "critical-severity": "Critical Severity",
-  "enable": "فعال"
+  "enable": "فعال",
+  "in-progress": "در حال پردازش",
+  "closed": "بسته شده",
+  "rejected": "رد شده",
+  "pending": "در حالت انتظار",
+  "name": "نام",
+  "username": "نام کاربری",
+  "email": "ایمیل",
+  "website": "وب‌سایت"
 }

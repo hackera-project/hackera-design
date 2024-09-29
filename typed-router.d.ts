@@ -30,6 +30,7 @@ declare module 'vue-router/auto-routes' {
     'hacker-programs-id': RouteRecordInfo<'hacker-programs-id', '/hacker/programs/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     'hacker-reports': RouteRecordInfo<'hacker-reports', '/hacker/reports', Record<never, never>, Record<never, never>>,
     'login': RouteRecordInfo<'login', '/login', Record<never, never>, Record<never, never>>,
+    'reports-id': RouteRecordInfo<'reports-id', '/reports/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     'second-page': RouteRecordInfo<'second-page', '/second-page', Record<never, never>, Record<never, never>>,
   }
 }
