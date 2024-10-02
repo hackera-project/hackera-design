@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useDialogStore } from '@/stores/dialog'
+
 const { t } = useI18n()
 
 const headers = [
@@ -16,6 +18,8 @@ const items = [
   { company: 'Cafebazar', asset: 'com.android.cafebazar', reported_at: '2022-12-03 14:20', status: 'closed', payment: '400' },
   { company: 'MTN', asset: '*.mtn.ir', reported_at: '2022-12-03 14:20', status: 'rejected', payment: '' },
 ]
+
+const { openDialog } = useDialogStore()
 
 const getStatusColor = (status: string) => {
   if (status === 'pending')
@@ -50,9 +54,16 @@ const getStatusColor = (status: string) => {
           <VBtn
             icon
             variant="text"
-          to="/reports/1"
+            to="/reports/1"
           >
             <VIcon icon="tabler-eye" />
+          </VBtn>
+          <VBtn
+            icon
+            variant="text"
+            @click="() => openDialog('hacker-comment', '500px')"
+          >
+            <VIcon icon="tabler-message" />
           </VBtn>
         </template>
         <template #bottom>

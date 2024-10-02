@@ -43,5 +43,13 @@
   "reported-at": "Reported at",
   "reported-by": "Reported by",
   "visibility": "Visibility",
-  "severity": "Severity"
+  "severity": "Severity",
+  "write-comment": "Write Comment",
+  "update-status": "Update Status",
+  "your-comment": "Your Comment",
+  "your-score-to-company": "Your score to company",
+  "review-company": "Review Company",
+  "report-details": "Report Details",
+  "status": "Status",
+  "payment": "Payment"
 }

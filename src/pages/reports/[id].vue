@@ -1,7 +1,10 @@
 <script lang="ts" setup>
+import { useDialogStore } from '@/stores/dialog'
+
 const content = ref('<h2>1. Summary</h2><p><strong>Vulnerability Type:</strong> Cross-Site Scripting (XSS)<br><strong>Severity:</strong> High<br><strong>Reported By:</strong> [Your Name] - [Your Email]</p><h2>2. Description</h2><p>A Cross-Site Scripting (XSS) vulnerability was found on the login page of `www.example.com`. This vulnerability allows an attacker to inject malicious scripts into the page, potentially leading to user data theft and account compromise.</p><h2>3. Steps to Reproduce</h2><ol><li>Navigate to the login page at <a href="https://www.example.com/login">https://www.example.com/login</a>.</li><li>Enter the following payload in the username field:</li><pre>&lt;script&gt;alert(\'XSS Vulnerability Detected\')&lt;/script&gt;</pre><li>Click the "Login" button.</li><li>Observe that the injected script executes, confirming the presence of XSS.</li></ol><h2>4. Impact</h2><p>This vulnerability allows attackers to execute arbitrary JavaScript in the context of the user’s browser, which could lead to session hijacking, data theft, and other security breaches.</p><h2>5. Suggested Mitigation</h2><p>It is recommended to implement proper input validation and output encoding to prevent script injection. Use libraries like DOMPurify to sanitize user inputs.</p><h2>6. Proof of Concept (PoC)</h2><p>The following screenshot shows the script execution:</p><img src="screenshot.png" alt="XSS PoC Screenshot"><h2>7. Environment Details</h2><p><strong>Browser:</strong> Google Chrome 92.0.4515.159<br><strong>Operating System:</strong> Windows 10</p><h2>8. References</h2><ul><li><a href="https://owasp.org/www-community/attacks/xss/">OWASP XSS</a> - Comprehensive guide on Cross-Site Scripting.</li></ul><h2>9. Contact Information</h2><p><strong>Name:</strong> [Your Name]<br><strong>Email:</strong> [Your Email]</p>')
 
 const show = ref(true)
+const { openDialog } = useDialogStore()
 </script>
 
 <template>
@@ -115,7 +118,7 @@ const show = ref(true)
     </VCol>
 
     <VCol cols="4">
-      <VCard title="Report details">
+      <VCard :title="$t('report-details')">
         <VCardText>
           <VRow>
             <!-- reported at -->
@@ -181,7 +184,7 @@ const show = ref(true)
               cols="4"
               class="font-weight-bold"
             >
-              Status
+              {{ $t('status') }}
             </VCol>
             <VCol cols="8">
               <VChip
@@ -195,14 +198,31 @@ const show = ref(true)
               cols="4"
               class="font-weight-bold"
             >
-              Payment
+              {{ $t('payment') }}
             </VCol>
             <VCol cols="8">
-                300$
+              300$
             </VCol>
           </VRow>
         </VCardText>
       </VCard>
+      <VBtn
+        block
+        class="mt-2"
+        prepend-icon="tabler-info-circle"
+      >
+        {{ $t('update-status') }}
+      </VBtn>
+
+      <VBtn
+        block
+        class="mt-2"
+        variant="outlined"
+        prepend-icon="tabler-message"
+        @click="() => openDialog('hacker-comment', '500px')"
+      >
+        {{ $t('write-comment') }}
+      </VBtn>
     </VCol>
   </VRow>
 </template>

@@ -35,5 +35,22 @@
   "name": "نام",
   "username": "نام کاربری",
   "email": "ایمیل",
-  "website": "وب‌سایت"
+  "website": "وب‌سایت",
+  "linkedin": "لینکدین",
+  "x": "X",
+  "github": "گیت‌هاب",
+  "gitlab": "گیت‌لب",
+  "social-media": "شبکه‌های اجتماعی",
+  "reported-at": "گزارش شده در",
+  "reported-by": "گزارش شده توسط",
+  "visibility": "Visibility",
+  "severity": "شدت",
+  "write-comment": "نوشتن نظر",
+  "update-status": "ویرایش وضعیت",
+  "your-comment": "نظر شما",
+  "your-score-to-company": "امتیاز شما به شرکت",
+  "review-company": "بررسی شرکت",
+  "report-details": "جزییات گزارش",
+  "status": "وضعیت",
+  "payment": "پرداختی"
 }
