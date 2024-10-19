@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
+import { useLoginStore } from '@/stores/auth/login'
 import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
 import authV2LoginIllustrationBorderedDark from '@images/pages/auth-v2-login-illustration-bordered-dark.png'
 import authV2LoginIllustrationBorderedLight from '@images/pages/auth-v2-login-illustration-bordered-light.png'
@@ -17,12 +17,6 @@ definePage({
   },
 })
 
-const form = ref({
-  email: '',
-  password: '',
-  remember: false,
-})
-
 const isPasswordVisible = ref(false)
 
 const authThemeImg = useGenerateImageVariant(
@@ -33,6 +27,10 @@ const authThemeImg = useGenerateImageVariant(
   true)
 
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
+
+const loginStore = useLoginStore()
+const { form, loading } = storeToRefs(loginStore)
+const { submit } = loginStore
 </script>
 
 <template>
@@ -94,85 +92,54 @@ const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
           </p>
         </VCardText>
         <VCardText>
-          <VForm @submit.prevent="() => {}">
-            <VRow>
-              <!-- email -->
-              <VCol cols="12">
-                <AppTextField
-                  v-model="form.email"
-                  autofocus
-                  label="Email or Username"
-                  type="email"
-                  placeholder="johndoe@email.com"
-                />
-              </VCol>
+          <VRow>
+            <!-- email -->
+            <VCol cols="12">
+              <AppTextField
+                v-model="form.email"
+                autofocus
+                label="Email or Username"
+                type="email"
+                placeholder="johndoe@email.com"
+              />
+            </VCol>
 
-              <!-- password -->
-              <VCol cols="12">
-                <AppTextField
-                  v-model="form.password"
-                  label="Password"
-                  placeholder="············"
-                  :type="isPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
-                  @click:append-inner="isPasswordVisible = !isPasswordVisible"
-                />
+            <!-- password -->
+            <VCol cols="12">
+              <AppTextField
+                v-model="form.password"
+                label="Password"
+                placeholder="············"
+                :type="isPasswordVisible ? 'text' : 'password'"
+                :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                @click:append-inner="isPasswordVisible = !isPasswordVisible"
+              />
 
-                <div class="d-flex align-center flex-wrap justify-space-between my-6">
-                  <VCheckbox
-                    v-model="form.remember"
-                    label="Remember me"
-                  />
-                  <a
-                    class="text-primary"
-                    href="javascript:void(0)"
-                  >
-                    Forgot Password?
-                  </a>
-                </div>
-
-                <VBtn
-                  block
-                  type="submit"
-                >
-                  Login
-                </VBtn>
-              </VCol>
-
-              <!-- create account -->
-              <VCol
-                cols="12"
-                class="text-body-1 text-center"
+              <VBtn
+                class="mt-4"
+                block
+                @click="submit"
               >
-                <span class="d-inline-block">
-                  New on our platform?
-                </span>
-                <a
-                  class="text-primary ms-1 d-inline-block text-body-1"
-                  href="javascript:void(0)"
-                >
-                  Create an account
-                </a>
-              </VCol>
+                {{ $t('login') }}
+              </VBtn>
+            </VCol>
 
-              <VCol
-                cols="12"
-                class="d-flex align-center"
+            <!-- create account -->
+            <VCol
+              cols="12"
+              class="text-body-1 text-center"
+            >
+              <span class="d-inline-block">
+                New on our platform?
+              </span>
+              <RouterLink
+                to="/register"
+                class="text-primary ms-1 d-inline-block text-body-1"
               >
-                <VDivider />
-                <span class="mx-4">or</span>
-                <VDivider />
-              </VCol>
-
-              <!-- auth providers -->
-              <VCol
-                cols="12"
-                class="text-center"
-              >
-                <AuthProvider />
-              </VCol>
-            </VRow>
-          </VForm>
+                Create an account
+              </RouterLink>
+            </VCol>
+          </VRow>
         </VCardText>
       </VCard>
     </VCol>

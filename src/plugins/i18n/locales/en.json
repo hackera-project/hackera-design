@@ -51,5 +51,16 @@
   "review-company": "Review Company",
   "report-details": "Report Details",
   "status": "Status",
-  "payment": "Payment"
+  "payment": "Payment",
+  "next": "Next",
+  "previous": "Previous",
+  "role": "Role",
+  "password": "Password",
+  "company-title": "Company Title",
+  "login": "Login",
+  "paid": "Paid",
+  "actions": "Actions",
+  "logout": "Logout",
+  "hacker": "Hacker",
+  "company-admin": "Company Admin"
 }
