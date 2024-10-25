@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-const options = ['VDP', 'BBP', 'Private']
+import { useProgramGeneralUpdateStore } from '@/stores/program/update/general'
+
+const options = ['VDP', 'BBP', 'Private', 'campaign']
+
+const programForm = useProgramGeneralUpdateStore()
+const { form, loading } = storeToRefs(programForm)
+const { update } = programForm
 </script>
 
 <template>
@@ -7,12 +13,14 @@ const options = ['VDP', 'BBP', 'Private']
     <VRow>
       <VCol cols="4">
         <AppSelect
+          v-model="form.type"
           :items="options"
           :label="$t('type')"
         />
       </VCol>
       <VCol cols="4">
         <AppTextField
+          v-model="form.deadline"
           :label="$t('deadline')"
           type="number"
         />
@@ -20,11 +28,16 @@ const options = ['VDP', 'BBP', 'Private']
     </VRow>
 
     <TextEditor
+      v-model="form.description"
       class="my-4"
       :placeholder="$t('program-description')"
     />
     <div class="d-flex justify-end">
-      <VBtn>
+      <VBtn
+        :loading="loading"
+        :disabled="loading"
+        @click="update"
+      >
         {{ $t('save') }}
       </VBtn>
     </div>

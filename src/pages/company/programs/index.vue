@@ -1,28 +1,18 @@
 <script lang="ts" setup>
-import { useDialogStore } from '@/stores/dialog'
+import { headers, useProgramsStore } from '@/stores/program'
+import { useProgramForm } from '@/stores/program/store'
 
-const { t } = useI18n()
+const { openForm } = useProgramForm()
 
-const headers = [
-  { title: t('title'), key: 'title', sortable: false },
-  { title: t('assets'), key: 'assets', sortable: false },
-  { title: t('paid'), key: 'paid', sortable: false },
-  { title: t('reports'), key: 'reports', sortable: false },
-  { title: t('actions'), key: 'actions', sortable: false },
-]
+const programsStore = useProgramsStore()
+const { programs, loading, page, paginationDesc, meta } = storeToRefs(programsStore)
+const { fetch, getColor } = programsStore
 
-const items = [
-  { title: 'Test bug bounty 1', assets: 45, paid: 3000, reports: 120 },
-  { title: 'Test bug bounty 2', assets: 20, paid: 100, reports: 20 },
-  { title: 'Test bug bounty 3', assets: 4, paid: 90, reports: 25 },
-  { title: 'Test bug bounty 4', assets: 5, paid: 300, reports: 9 },
-]
-
-const { openDialog } = useDialogStore()
+fetch()
 </script>
 
 <template>
-  <VCard>
+  <VCard :loading="loading.fetch">
     <template #title>
       <div class="d-flex justify-space-between align-center">
         <VCardTitle>
@@ -31,7 +21,7 @@ const { openDialog } = useDialogStore()
         <VBtn
           size="small"
           prepend-icon="tabler-plus"
-          @click="() => openDialog('create-program-form', '600px')"
+          @click="openForm"
         >
           {{ $t('add-program') }}
         </VBtn>
@@ -41,15 +31,24 @@ const { openDialog } = useDialogStore()
     <VCardText>
       <VDataTable
         :headers
-        :items
+        :items="programs"
       >
+        <template #item.status="{ item }">
+          <VChip
+            :label="false"
+            :color="getColor(item.status)"
+            density="compact"
+          >
+            {{ $t(item.status) }}
+          </VChip>
+        </template>
         <template #item.actions="{ item }">
           <div class="d-flex">
             <VBtn
               icon
               variant="text"
               size="small"
-              to="/company/programs/1"
+              :to="`/company/programs/${item.id}`"
             >
               <VIcon icon="tabler-pencil" />
             </VBtn>
@@ -64,8 +63,13 @@ const { openDialog } = useDialogStore()
           </div>
         </template>
         <template #bottom>
-          <div class="d-flex justify-end mt-4">
-            <VPagination length="7" />
+          <div class="d-flex justify-space-between align-center mt-3">
+            <div class="text-subtitle-1" />
+            <VPagination
+              v-model="page"
+              total-visible="7"
+              :length="meta.last_page"
+            />
           </div>
         </template>
       </VDataTable>

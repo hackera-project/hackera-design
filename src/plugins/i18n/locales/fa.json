@@ -23,10 +23,10 @@
   "save": "ذخیره",
   "program-description": "توضیحات پروگرم",
   "deadline": "ددلاین",
-  "low-severity": "Low Severity",
-  "medium-severity": "Medium Severity",
-  "high-severity": "High Severity",
-  "critical-severity": "Critical Severity",
+  "low-severity": "شدت کم",
+  "medium-severity": "شدت متوسط",
+  "high-severity": "شدت بالا",
+  "critical-severity": "شدت حیاتی",
   "enable": "فعال",
   "in-progress": "در حال پردازش",
   "closed": "بسته شده",
@@ -64,5 +64,10 @@
   "actions": "عملیات",
   "logout": "خروج",
   "hacker": "هکر",
-  "company-admin": "ادمین شرکت"
+  "company-admin": "ادمین شرکت",
+  "review": "بررسی",
+  "active": "فعال",
+  "deactive": "غیر فعال",
+  "min": "حداقل",
+  "max": "حداکثر"
 }

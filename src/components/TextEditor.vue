@@ -89,7 +89,10 @@ watch(() => props.modelValue, () => {
 </script>
 
 <template>
-  <div :class="{ border: !preview }">
+  <div
+    :class="{ border: !preview }"
+    style="min-height: 400px;"
+  >
     <div
       v-if="editor && !preview"
       class="d-flex gap-2 py-2 px-6 flex-wrap align-center editor"

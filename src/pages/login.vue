@@ -98,9 +98,8 @@ const { submit } = loginStore
               <AppTextField
                 v-model="form.email"
                 autofocus
-                label="Email or Username"
+                :label="$t('email')"
                 type="email"
-                placeholder="johndoe@email.com"
               />
             </VCol>
 
@@ -108,7 +107,7 @@ const { submit } = loginStore
             <VCol cols="12">
               <AppTextField
                 v-model="form.password"
-                label="Password"
+                :label="$t('password')"
                 placeholder="············"
                 :type="isPasswordVisible ? 'text' : 'password'"
                 :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"

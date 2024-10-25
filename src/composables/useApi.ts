@@ -4,6 +4,7 @@ import { destr } from 'destr'
 import { themeConfig } from '@themeConfig'
 import { cookieRef } from '@layouts/stores/config'
 import type { Response } from '@/types'
+import { router } from '@/plugins/1.router'
 
 export const useApi = createFetch({
   baseUrl: import.meta.env.VITE_API_BASE_URL || '/api',
@@ -49,7 +50,7 @@ export const useApi = createFetch({
       const { data, response } = ctx
 
       if (response?.status === 401)
-        useRouter().push('/login')
+        router.push('/login')
 
       const parsedData = destr<Response<any>>(data)
       if (parsedData?.message)

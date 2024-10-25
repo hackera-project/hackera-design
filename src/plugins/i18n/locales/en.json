@@ -62,5 +62,10 @@
   "actions": "Actions",
   "logout": "Logout",
   "hacker": "Hacker",
-  "company-admin": "Company Admin"
+  "company-admin": "Company Admin",
+  "review": "Review",
+  "active": "Active",
+  "deactive": "Deactive",
+  "min": "Min",
+  "max": "Max"
 }
