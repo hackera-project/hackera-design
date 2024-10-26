@@ -1,7 +1,7 @@
 import { useProgramExclusionsUpdateStore } from './exclusions'
 import { useProgramGeneralUpdateStore } from './general'
-import type { Response } from '@/types'
 import { useProgramPaymentsUpdateStore } from './payments'
+import type { Response } from '@/types'
 
 interface PriceRange {
   min: number
@@ -32,6 +32,7 @@ export const useProgramUpdateStore = defineStore('program-update', () => {
   const currentId = ref(0)
 
   const setId = (id: number) => currentId.value = id
+  const getId = () => currentId.value
 
   const fetch = async () => {
     loading.fetch = true
@@ -57,6 +58,7 @@ export const useProgramUpdateStore = defineStore('program-update', () => {
   return {
     program,
     loading,
+    getId,
     setId,
     fetch,
     update,

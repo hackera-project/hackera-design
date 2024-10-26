@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-const type = ref('url')
-const severity = ref('critical')
+import { useDrawerStore } from '@/stores/drawer'
+import { maxSeverityOptions, typeOptions, useProgramAssetsForm } from '@/stores/program/update/asset/store'
 
-const typeOptions = ['url', 'wildcard', 'google_play_id', 'app_store_id', 'source_code']
+const assetForm = useProgramAssetsForm()
+const { form, loading } = storeToRefs(assetForm)
+const { submit } = assetForm
 
-const severityOptions = ['low', 'medium', 'high', 'critical']
+const { closeDrawer } = useDrawerStore()
 </script>
 
 <template>
@@ -12,22 +14,29 @@ const severityOptions = ['low', 'medium', 'high', 'critical']
     <VRow>
       <VCol cols="12">
         <AppSelect
-          v-model="type"
+          v-model="form.type"
           :items="typeOptions"
           :label="$t('type')"
+          item-title="title"
+          item-value="value"
           chips
           clearable
         />
       </VCol>
       <VCol cols="12">
-        <AppTextField :label="$t('value')" />
+        <AppTextField
+          v-model="form.asset_value"
+          :label="$t('value')"
+        />
       </VCol>
 
       <VCol cols="12">
         <AppSelect
-          v-model="severity"
-          :items="severityOptions"
+          v-model="form.max_severity"
+          :items="maxSeverityOptions"
           :label="$t('max-severity')"
+          item-title="title"
+          item-value="value"
           chips
           clearable
         />
@@ -37,12 +46,18 @@ const severityOptions = ['low', 'medium', 'high', 'critical']
         cols="12"
         class="d-flex align-center"
       >
-        <VBtn class="me-2">
+        <VBtn
+          class="me-2"
+          :loading="loading.submit"
+          :disabled="loading.submit"
+          @click="submit"
+        >
           {{ $t('save') }}
         </VBtn>
         <VBtn
           color="error"
           variant="tonal"
+          @click="closeDrawer"
         >
           {{ $t('cancel') }}
         </VBtn>

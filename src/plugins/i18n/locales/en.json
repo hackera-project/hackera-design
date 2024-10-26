@@ -67,5 +67,13 @@
   "active": "Active",
   "deactive": "Deactive",
   "min": "Min",
-  "max": "Max"
+  "max": "Max",
+  "url": "URL",
+  "wildcard": "Wildcard",
+  "google-play-id": "Google Play ID",
+  "app-store-id": "App Store ID",
+  "source-code": "Source Code",
+  "remove": "Remove",
+  "remove-title": "Remove {resource}",
+  "remove-confirmation": "Are you sure you want to remove {name}?"
 }

@@ -69,5 +69,13 @@
   "active": "فعال",
   "deactive": "غیر فعال",
   "min": "حداقل",
-  "max": "حداکثر"
+  "max": "حداکثر",
+  "url": "URL",
+  "wildcard": "Wildcard",
+  "google-play-id": "Google Play ID",
+  "app-store-id": "App Store ID",
+  "source-code": "Source Code",
+  "remove": "حذف",
+  "remove-title": "حذف {resource}",
+  "remove-confirmation": "آیا برای حذف {name} مطمئن هستید؟"
 }

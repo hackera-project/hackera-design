@@ -1,20 +1,17 @@
 <script lang="ts" setup>
-import { useDrawerStore } from '@/stores/drawer'
+import { useDestroyStore } from '@/stores/destroy'
+import { headers, severityMap, useProgramAssetsStore } from '@/stores/program/update/asset'
+import { useProgramAssetsForm } from '@/stores/program/update/asset/store'
 
-const headers = [
-  { title: 'Type', key: 'type' },
-  { title: 'Value', key: 'value' },
-  { title: 'Max severity', key: 'max_severity' },
-  { title: 'Actions', key: 'actions' },
-]
+const { openForm } = useProgramAssetsForm()
 
-const items = [
-  { type: 'source code', value: 'https://github.com/contentauth/c2pa-js', max_severity: 4 },
-  { type: 'Google play id', value: 'com.hotwire.hotels', max_severity: 3 },
-  { type: 'App Store id', value: '427916203', max_severity: 3 },
-]
+const assetsStore = useProgramAssetsStore()
+const { assets, loading, page, meta } = storeToRefs(assetsStore)
+const { fetch, destroy } = assetsStore
 
-const { openDrawer } = useDrawerStore()
+fetch()
+
+const { openDialog } = useDestroyStore()
 </script>
 
 <template>
@@ -25,35 +22,49 @@ const { openDrawer } = useDrawerStore()
       </div>
       <VBtn
         prepend-icon="tabler-plus"
-        @click="() => openDrawer('asset-store', $t('create-asset'))"
+        @click="openForm"
       >
         {{ $t('add-asset') }}
       </VBtn>
     </div>
     <VDataTable
       :headers
-      :items
+      :items="assets"
+      :loading="loading.fetch"
     >
-      <template #item.actions>
+      <template #item.type="{ item }">
+        {{ $t(item.type) }}
+      </template>
+
+      <template #item.max_severity="{ item }">
+        <VChip>
+          {{ $t(severityMap[item.max_severity]) }}
+        </VChip>
+      </template>
+
+      <template #item.actions="{ item }">
         <div class="d-flex">
           <VBtn
             icon="tabler-pencil"
             variant="text"
-            @click="() => openDrawer('asset-store', $t('edit-asset'))"
+            @click="() => openForm(item.id)"
           />
           <VBtn
             icon="tabler-trash"
             color="error"
             variant="text"
+            @click="openDialog($t('asset'), $t(item.type), destroy(item.id))"
           />
         </div>
       </template>
       <template #bottom>
         <div class="d-flex justify-space-between align-center mt-3">
-          <div class="text-subtitle-1">
-            paginate decs
-          </div>
-          <VPagination total-visible="7" />
+          <div class="text-subtitle-1" />
+          <VPagination
+            v-model="page"
+            total-visible="7"
+            :length="meta.last_page"
+          />
         </div>
       </template>
     </VDataTable>

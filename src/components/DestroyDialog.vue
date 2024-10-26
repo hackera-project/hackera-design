@@ -9,7 +9,7 @@ const { remove } = destroyStore
 <template>
   <VCard :title="$t('remove-title', { resource })">
     <VCardText>
-      {{ $t('remove-confirmation') }} <strong>{{ name }}</strong>?
+      {{ $t('remove-confirmation', { name }) }}
     </VCardText>
     <VCardText class="d-flex justify-end">
       <VBtn
