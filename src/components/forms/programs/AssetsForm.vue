@@ -22,7 +22,7 @@ const { openDialog } = useDestroyStore()
       </div>
       <VBtn
         prepend-icon="tabler-plus"
-        @click="openForm"
+        @click="() => openForm()"
       >
         {{ $t('add-asset') }}
       </VBtn>

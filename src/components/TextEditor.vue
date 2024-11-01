@@ -91,7 +91,7 @@ watch(() => props.modelValue, () => {
 <template>
   <div
     :class="{ border: !preview }"
-    style="min-height: 400px;"
+    :style="preview ? '' : 'min-height: 400px;'"
   >
     <div
       v-if="editor && !preview"

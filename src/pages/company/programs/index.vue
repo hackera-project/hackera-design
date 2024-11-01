@@ -5,7 +5,7 @@ import { useProgramForm } from '@/stores/program/store'
 const { openForm } = useProgramForm()
 
 const programsStore = useProgramsStore()
-const { programs, loading, page, paginationDesc, meta } = storeToRefs(programsStore)
+const { programs, loading, page, meta } = storeToRefs(programsStore)
 const { fetch, getColor } = programsStore
 
 fetch()

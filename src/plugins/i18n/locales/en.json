@@ -75,5 +75,8 @@
   "source-code": "Source Code",
   "remove": "Remove",
   "remove-title": "Remove {resource}",
-  "remove-confirmation": "Are you sure you want to remove {name}?"
+  "remove-confirmation": "Are you sure you want to remove {name}?",
+  "description": "Description",
+  "upload-company-logo": "Upload Company Logo",
+  "program-exclusions": "Program Exclusions"
 }

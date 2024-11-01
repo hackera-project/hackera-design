@@ -4,10 +4,13 @@ import type { PaginationResponse } from '@/types'
 
 type ProgramStatus = 'active' | 'deactive' | 'review'
 
-interface Program {
+export interface Program {
   id: number
   title: string
   status: ProgramStatus
+
+  company: { title: string; logo: string }
+  assets: Record<string, number>
 }
 
 export const useProgramsStore = defineStore('programs-store', () => {
@@ -64,7 +67,7 @@ const { t } = getI18n().global
 
 export const headers = [
   { title: t('title'), key: 'title', sortable: false },
-  { title: t('assets'), key: 'assets', sortable: false },
+  { title: t('assets'), key: 'assets_count', sortable: false },
   { title: t('paid'), key: 'paid', sortable: false },
   { title: t('reports'), key: 'reports', sortable: false },
   { title: t('status'), key: 'status', sortable: false },

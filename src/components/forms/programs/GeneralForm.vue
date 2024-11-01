@@ -1,7 +1,12 @@
 <script lang="ts" setup>
 import { useProgramGeneralUpdateStore } from '@/stores/program/update/general'
 
-const options = ['VDP', 'BBP', 'Private', 'campaign']
+const options = [
+  { label: 'VDP', value: 'vdp' },
+  { label: 'BBP', value: 'bbp' },
+  { label: 'Private', value: 'private' },
+  { label: 'Campaign', value: 'campaign' },
+]
 
 const programForm = useProgramGeneralUpdateStore()
 const { form, loading } = storeToRefs(programForm)
@@ -16,6 +21,8 @@ const { update } = programForm
           v-model="form.type"
           :items="options"
           :label="$t('type')"
+          item-value="value"
+          item-title="label"
         />
       </VCol>
       <VCol cols="4">

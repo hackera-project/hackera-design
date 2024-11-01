@@ -77,5 +77,8 @@
   "source-code": "Source Code",
   "remove": "حذف",
   "remove-title": "حذف {resource}",
-  "remove-confirmation": "آیا برای حذف {name} مطمئن هستید؟"
+  "remove-confirmation": "آیا برای حذف {name} مطمئن هستید؟",
+  "description": "توضیحات",
+  "upload-company-logo": "آپلود لوگو شرکت",
+  "program-exclusions": "محرومیت‌های پروگرم"
 }
