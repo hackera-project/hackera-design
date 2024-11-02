@@ -91,7 +91,6 @@ watch(() => props.modelValue, () => {
 <template>
   <div
     :class="{ border: !preview }"
-    :style="preview ? '' : 'min-height: 400px;'"
   >
     <div
       v-if="editor && !preview"
@@ -200,10 +199,15 @@ watch(() => props.modelValue, () => {
 
     <VDivider v-if="!preview" />
 
-    <EditorContent
-      ref="editorRef"
-      :editor="editor"
-    />
+    <div
+      class="overflow-auto"
+      :style="preview ? '' : 'height: 400px;'"
+    >
+      <EditorContent
+        ref="editorRef"
+        :editor="editor"
+      />
+    </div>
   </div>
 </template>
 

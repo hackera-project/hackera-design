@@ -1,4 +1,12 @@
+import { useMessageBoxStore } from '../drawer/message-box'
 import type { Response } from '@/types'
+
+interface Feedback {
+  id: number
+  content: string
+  user: { id: number; name: string }
+  created_at: string
+}
 
 interface Report {
   id: number
@@ -12,6 +20,7 @@ interface Report {
   cve: string
   cwe: string
   severity: string
+  feedbacks: Feedback[]
 }
 
 export const useReportStore = defineStore('report-store', () => {
@@ -35,11 +44,22 @@ export const useReportStore = defineStore('report-store', () => {
     loading.fetch = false
   }
 
+  const sendFeedback = async (content: string) => {
+    await useApi(`v1/reports/${currentId.value}/feedbacks`).post({ content })
+    fetch()
+  }
+
+  const openFeedbackBox = () => {
+    useMessageBoxStore().openMessageBox(sendFeedback)
+  }
+
   return {
     report,
     loading,
     fetch,
     setId,
     getId,
+    sendFeedback,
+    openFeedbackBox,
   }
 })

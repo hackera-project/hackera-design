@@ -91,5 +91,8 @@
   "CWE": "CWE",
   "asset": "Asset",
   "program": "Program",
-  "company": "Company"
+  "company": "Company",
+  "write-message": "Write Message",
+  "send": "Send",
+  "write-feedback": "Write Feedback"
 }

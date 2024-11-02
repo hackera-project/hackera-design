@@ -376,6 +376,7 @@ declare module 'vue' {
     GeneralForm: typeof import('./src/components/forms/programs/GeneralForm.vue')['default']
     HackerComment: typeof import('./src/components/dialogs/HackerComment.vue')['default']
     I18n: typeof import('./src/@core/components/I18n.vue')['default']
+    MessageBox: typeof import('./src/components/MessageBox.vue')['default']
     MoreBtn: typeof import('./src/@core/components/MoreBtn.vue')['default']
     Notifications: typeof import('./src/@core/components/Notifications.vue')['default']
     PaymentProvidersDialog: typeof import('./src/components/dialogs/PaymentProvidersDialog.vue')['default']

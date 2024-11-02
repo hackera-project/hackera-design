@@ -93,5 +93,8 @@
   "CWE": "CWE",
   "asset": "ابزار",
   "program": "پروگرم",
-  "company": "شرکت"
+  "company": "شرکت",
+  "write-message": "نوشتن پیام",
+  "send": "ارسال",
+  "write-feedback": "نوشتن بازخورد"
 }
