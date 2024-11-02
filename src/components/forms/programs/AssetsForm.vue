@@ -6,7 +6,7 @@ import { useProgramAssetsForm } from '@/stores/program/update/asset/store'
 const { openForm } = useProgramAssetsForm()
 
 const assetsStore = useProgramAssetsStore()
-const { assets, loading, page, meta } = storeToRefs(assetsStore)
+const { assets, loading } = storeToRefs(assetsStore)
 const { fetch, destroy } = assetsStore
 
 fetch()
@@ -31,6 +31,7 @@ const { openDialog } = useDestroyStore()
       :headers
       :items="assets"
       :loading="loading.fetch"
+      hide-default-footer
     >
       <template #item.type="{ item }">
         {{ $t(item.type) }}
@@ -54,16 +55,6 @@ const { openDialog } = useDestroyStore()
             color="error"
             variant="text"
             @click="openDialog($t('asset'), $t(item.type), destroy(item.id))"
-          />
-        </div>
-      </template>
-      <template #bottom>
-        <div class="d-flex justify-space-between align-center mt-3">
-          <div class="text-subtitle-1" />
-          <VPagination
-            v-model="page"
-            total-visible="7"
-            :length="meta.last_page"
           />
         </div>
       </template>

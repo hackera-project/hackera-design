@@ -237,6 +237,7 @@ watch(() => props.modelValue, () => {
     font-family: 'JetBrainsMono', monospace;
     margin: 1.5rem 0;
     padding: 0.75rem 1rem;
+    direction: ltr;
 
     code {
       background: none;

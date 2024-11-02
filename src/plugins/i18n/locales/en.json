@@ -78,5 +78,18 @@
   "remove-confirmation": "Are you sure you want to remove {name}?",
   "description": "Description",
   "upload-company-logo": "Upload Company Logo",
-  "program-exclusions": "Program Exclusions"
+  "program-exclusions": "Program Exclusions",
+  "do-you-want-to-submit-report": "Do you want to sent a report?",
+  "submit-report": "Submit a Report",
+  "create-report": "Create Report",
+  "vulnerability-info": "Vulnerability Info",
+  "reproduce-steps": "Reproduce Steps",
+  "image": "Image",
+  "video": "Video",
+  "general-info": "General Inforamtion",
+  "CVE": "CVE",
+  "CWE": "CWE",
+  "asset": "Asset",
+  "program": "Program",
+  "company": "Company"
 }

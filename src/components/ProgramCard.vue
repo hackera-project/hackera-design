@@ -23,7 +23,7 @@ defineProps<Props>()
         {{ program.title }}
       </div>
       <div class="text-subtitle-1">
-        {{ program.company.title }}
+        {{ program.company?.title }}
       </div>
     </VCardTitle>
 
@@ -43,14 +43,14 @@ defineProps<Props>()
               vertical
               class="mx-2"
             />
-            {{ asset }}
+            {{ $t(asset) }}
           </VChip>
         </template>
       </div>
     </VCardText>
 
     <VCardText class="text-h5 font-weight-bold">
-      100$ - 6000$
+      {{ program.payments.min }} - {{ program.payments.max }}
     </VCardText>
 
     <div class="d-flex justify-space-between px-4 pb-2">

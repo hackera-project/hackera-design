@@ -20,7 +20,10 @@ fetch()
       <div class="text-h4 mb-4">
         {{ program.title }}
       </div>
-      <VCard :title="$t('payments')">
+      <VCard
+        v-if="program.payments?.enable"
+        :title="$t('payments')"
+      >
         <VCardText>
           <VRow>
             <VCol cols="3">
@@ -89,10 +92,10 @@ fetch()
       <VCard>
         <VCardText class="d-flex flex-column align-center">
           <div class="mb-4">
-            Do you want to sent a report?
+            {{ $t('do-you-want-to-submit-report') }}
           </div>
-          <VBtn>
-            submit a report
+          <VBtn :to="`/hacker/programs/${$route.params.id}/reports/create`">
+            {{ $t('submit-report') }}
           </VBtn>
         </VCardText>
       </VCard>

@@ -1,6 +1,5 @@
 import { useProgramUpdateStore } from '..'
-import type { PaginationResponse } from '@/types'
-import { usePaginationStore } from '@/stores/pagination'
+import type { Response } from '@/types'
 import { getI18n } from '@/plugins/i18n'
 
 export const severityMap = {
@@ -20,27 +19,27 @@ interface Asset {
 const { t } = getI18n().global
 
 export const useProgramAssetsStore = defineStore('program-assets', () => {
-  const pagination = usePaginationStore('program-assets')
-  const { page, perPage, meta } = storeToRefs(pagination)
-
   const assets = ref([] as Array<Asset>)
   const loading = reactive({ fetch: false })
+
+  const assetsOption = computed(() => {
+    return assets.value.map(a => ({
+      id: a.id,
+      title: `${t(a.type)} (${a.asset_value})`,
+    }))
+  })
 
   const fetch = async () => {
     loading.fetch = true
 
     const programId = useProgramUpdateStore().getId()
 
-    const res = await useApi<PaginationResponse<Array<Asset>>>(
-      url(`v1/programs/${programId}/assets`, { page: page.value }),
-    ).get()
+    const res = await useApi<Response<Array<Asset>>>(`v1/programs/${programId}/assets`).get()
 
     const data = res.data.value
 
-    if (res.statusCode.value === 200 && data) {
-      assets.value = data.result.data
-      pagination.update(data.result.meta)
-    }
+    if (res.statusCode.value === 200 && data)
+      assets.value = data.result
 
     loading.fetch = false
   }
@@ -57,18 +56,13 @@ export const useProgramAssetsStore = defineStore('program-assets', () => {
     }
   }
 
-  watch(page, fetch)
-
   return {
     assets,
+    assetsOption,
     loading,
     getAsset,
     fetch,
     destroy,
-
-    page,
-    perPage,
-    meta,
   }
 })
 

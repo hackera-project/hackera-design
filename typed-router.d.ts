@@ -27,6 +27,7 @@ declare module 'vue-router/auto-routes' {
     'hacker-profile': RouteRecordInfo<'hacker-profile', '/hacker/profile', Record<never, never>, Record<never, never>>,
     'hacker-programs': RouteRecordInfo<'hacker-programs', '/hacker/programs', Record<never, never>, Record<never, never>>,
     'hacker-programs-id': RouteRecordInfo<'hacker-programs-id', '/hacker/programs/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    'hacker-programs-id-reports-create': RouteRecordInfo<'hacker-programs-id-reports-create', '/hacker/programs/:id/reports/create', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     'hacker-reports': RouteRecordInfo<'hacker-reports', '/hacker/reports', Record<never, never>, Record<never, never>>,
     'login': RouteRecordInfo<'login', '/login', Record<never, never>, Record<never, never>>,
     'register': RouteRecordInfo<'register', '/register', Record<never, never>, Record<never, never>>,

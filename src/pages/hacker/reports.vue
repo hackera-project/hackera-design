@@ -1,23 +1,11 @@
 <script lang="ts" setup>
 import { useDialogStore } from '@/stores/dialog'
+import { headers, useReportsStore } from '@/stores/report'
 
-const { t } = useI18n()
+const reportsStore = useReportsStore()
+const { reports, loading, page, meta } = storeToRefs(reportsStore)
 
-const headers = [
-  { title: 'Company', key: 'company', sortable: false },
-  { title: 'Asset', key: 'asset', sortable: false },
-  { title: 'Reported at', key: 'reported_at', sortable: false },
-  { title: 'Status', key: 'status', sortable: false },
-  { title: 'Payment', key: 'payment', sortable: false },
-  { title: '', key: 'action', sortable: false },
-]
-
-const items = [
-  { company: 'Digikala', asset: 'digikala.com', reported_at: '2022-12-03 14:20', status: 'in-progress', payment: '150' },
-  { company: 'Google', asset: 'google.com', reported_at: '2022-12-03 14:20', status: 'pending', payment: '' },
-  { company: 'Cafebazar', asset: 'com.android.cafebazar', reported_at: '2022-12-03 14:20', status: 'closed', payment: '400' },
-  { company: 'MTN', asset: '*.mtn.ir', reported_at: '2022-12-03 14:20', status: 'rejected', payment: '' },
-]
+reportsStore.fetch()
 
 const { openDialog } = useDialogStore()
 
@@ -36,11 +24,14 @@ const getStatusColor = (status: string) => {
 </script>
 
 <template>
-  <VCard :title="$t('reports')">
+  <VCard
+    :title="$t('reports')"
+    :loading="loading.fetch"
+  >
     <VCardText>
       <VDataTable
         :headers
-        :items
+        :items="reports"
       >
         <template #item.status="{ item }">
           <VChip
@@ -68,7 +59,11 @@ const getStatusColor = (status: string) => {
         </template>
         <template #bottom>
           <div class="d-flex justify-end mt-4">
-            <VPagination length="7" />
+            <VPagination
+              v-model="page"
+              :length="meta.last_page"
+              total-visible="7"
+            />
           </div>
         </template>
       </VDataTable>

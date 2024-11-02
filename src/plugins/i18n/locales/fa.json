@@ -80,5 +80,18 @@
   "remove-confirmation": "آیا برای حذف {name} مطمئن هستید؟",
   "description": "توضیحات",
   "upload-company-logo": "آپلود لوگو شرکت",
-  "program-exclusions": "محرومیت‌های پروگرم"
+  "program-exclusions": "محرومیت‌های پروگرم",
+  "do-you-want-to-submit-report": "آیا می‌خواهید گزارش ارسال کنید؟",
+  "submit-report": "ارسال گزارش",
+  "create-report": "ساخت گزارش",
+  "vulnerability-info": "اطلاعات آسیب‌پذیری",
+  "reproduce-steps": "مراحل بازتولید",
+  "image": "عکس",
+  "video": "ویدیو",
+  "general-info": "اطلاعات عمومی",
+  "CVE": "CVE",
+  "CWE": "CWE",
+  "asset": "ابزار",
+  "program": "پروگرم",
+  "company": "شرکت"
 }

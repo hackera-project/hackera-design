@@ -11,6 +11,7 @@ export interface Program {
 
   company: { title: string; logo: string }
   assets: Record<string, number>
+  payments: { min: number, max: string }
 }
 
 export const useProgramsStore = defineStore('programs-store', () => {
