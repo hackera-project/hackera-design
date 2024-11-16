@@ -1,5 +1,5 @@
-import { router } from '@/plugins/1.router'
 import { useUserStore } from './me'
+import { router } from '@/plugins/1.router'
 import type { Response } from '@/types'
 
 export const useRegisterStore = defineStore('register-store', () => {
@@ -34,6 +34,8 @@ export const useRegisterStore = defineStore('register-store', () => {
       useUserStore().setUser(data.result.token)
       router.push(data.result.role === 'hacker' ? '/hacker' : '/company')
     }
+
+    loading.submit = false
   }
 
   return {

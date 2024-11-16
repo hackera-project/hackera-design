@@ -14,7 +14,7 @@ defineProps<Props>()
     :to="`/hacker/programs/${program.id}`"
   >
     <VImg
-      :src="program"
+      :src="program.logo"
       width="100%"
       height="200"
     />
