@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useDialogStore } from '@/stores/dialog'
 import { headers, useReportsStore } from '@/stores/report'
+import {reportStatusColor } from '@/utils/options'
 
 const reportsStore = useReportsStore()
 const { reports, loading, page, meta } = storeToRefs(reportsStore)
@@ -8,19 +9,6 @@ const { reports, loading, page, meta } = storeToRefs(reportsStore)
 reportsStore.fetch()
 
 const { openDialog } = useDialogStore()
-
-const getStatusColor = (status: string) => {
-  if (status === 'pending')
-    return 'warning'
-
-  if (status === 'rejected')
-    return 'error'
-
-  if (status === 'closed')
-    return 'success'
-
-  return 'info'
-}
 </script>
 
 <template>
@@ -36,7 +24,7 @@ const getStatusColor = (status: string) => {
         <template #item.status="{ item }">
           <VChip
             :label="false"
-            :color="getStatusColor(item.status)"
+            :color="reportStatusColor(item.status)"
           >
             {{ $t(item.status) }}
           </VChip>

@@ -94,5 +94,7 @@
   "company": "Company",
   "write-message": "Write Message",
   "send": "Send",
-  "write-feedback": "Write Feedback"
+  "write-feedback": "Write Feedback",
+  "approved": "Approved",
+  "duplicated": "Duplicated"
 }

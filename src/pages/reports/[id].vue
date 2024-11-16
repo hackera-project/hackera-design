@@ -8,7 +8,7 @@ const { openDialog } = useDialogStore()
 
 const reportStore = useReportStore()
 const { report, loading } = storeToRefs(reportStore)
-const { setId, fetch, openFeedbackBox } = reportStore
+const { setId, fetch, openFeedbackBox, openUpdateStatus } = reportStore
 
 setId(Number(useRoute().params.id))
 fetch()
@@ -31,62 +31,62 @@ const { user } = storeToRefs(useUserStore())
           </div>
 
           <VCard>
-            <template #title>
-              <div class="d-flex justify-space-between align-center">
-                <div class="text-h4">
-                  {{ $t('description') }}
-                </div>
-                <VBtn
-                  icon
-                  variant="text"
-                  @click="() => show.description = !show.description"
-                >
-                  <VIcon
-                    icon="tabler-chevron-down"
-                    style="transition: ease 0.5s all;"
-                    :style="show.description ? 'transform: rotate(180deg)' : ''"
-                  />
-                </VBtn>
+            <div class="d-flex justify-space-between align-center py-2 px-4">
+              <div class="text-h5">
+                {{ $t('description') }}
               </div>
-            </template>
+              <VBtn
+                icon
+                variant="text"
+                @click="() => show.description = !show.description"
+              >
+                <VIcon
+                  icon="tabler-chevron-down"
+                  style="transition: ease 0.5s all;"
+                  :style="show.description ? 'transform: rotate(180deg)' : ''"
+                />
+              </VBtn>
+            </div>
 
             <VExpandTransition>
-              <VCardText v-show="show.description">
-                <TextEditor
-                  v-model="report.description"
-                  preview
-                />
-              </VCardText>
+              <div v-show="show.description">
+                <VCardText>
+                  <TextEditor
+                    v-model="report.description"
+                    preview
+                  />
+                </VCardText>
+              </div>
             </VExpandTransition>
           </VCard>
 
           <VCard class="mt-4">
-            <template #title>
-              <div class="d-flex justify-space-between align-center">
-                <div class="text-h4">
-                  {{ $t('reproduce-steps') }}
-                </div>
-                <VBtn
-                  icon
-                  variant="text"
-                  @click="() => show.reproduce = !show.reproduce"
-                >
-                  <VIcon
-                    icon="tabler-chevron-down"
-                    style="transition: ease 0.5s all;"
-                    :style="show.reproduce ? 'transform: rotate(180deg)' : ''"
-                  />
-                </VBtn>
+            <div class="d-flex justify-space-between align-center py-2 px-4">
+              <div class="text-h5">
+                {{ $t('reproduce-steps') }}
               </div>
-            </template>
+              <VBtn
+                icon
+                variant="text"
+                @click="() => show.reproduce = !show.reproduce"
+              >
+                <VIcon
+                  icon="tabler-chevron-down"
+                  style="transition: ease 0.5s all;"
+                  :style="show.reproduce ? 'transform: rotate(180deg)' : ''"
+                />
+              </VBtn>
+            </div>
 
             <VExpandTransition>
-              <VCardText v-show="show.reproduce">
-                <TextEditor
-                  v-model="report.reproduce_steps"
-                  preview
-                />
-              </VCardText>
+              <div v-show="show.reproduce">
+                <VCardText>
+                  <TextEditor
+                    v-model="report.reproduce_steps"
+                    preview
+                  />
+                </VCardText>
+              </div>
             </VExpandTransition>
           </VCard>
 
@@ -185,7 +185,7 @@ const { user } = storeToRefs(useUserStore())
                 {{ $t('severity') }}
               </VCol>
               <VCol cols="8">
-                {{ report.severity }}
+                {{ severityOptions.find(s => s.value === Number(report.severity))?.title }}
               </VCol>
             </VRow>
 
@@ -200,10 +200,10 @@ const { user } = storeToRefs(useUserStore())
               </VCol>
               <VCol cols="8">
                 <VChip
-                  color="info"
+                  :color="reportStatusColor(report.status)"
                   :label="false"
                 >
-                  {{ report.status }}
+                  {{ $t(report.status ?? '') }}
                 </VChip>
               </VCol>
               <VCol
@@ -229,14 +229,17 @@ const { user } = storeToRefs(useUserStore())
         </VBtn>
 
         <VBtn
+          v-if="user.role === 'company-admin' || user.role === 'company-employee'"
           block
           class="mt-2"
-          prepend-icon="tabler-info-circle"
+          prepend-icon="tabler-adjustments"
+          @click="openUpdateStatus"
         >
           {{ $t('update-status') }}
         </VBtn>
 
         <VBtn
+          v-if="user.role === 'hacker'"
           block
           class="mt-2"
           variant="outlined"

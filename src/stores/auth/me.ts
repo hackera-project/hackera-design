@@ -1,12 +1,14 @@
 import { router } from '@/plugins/1.router'
 import type { Response } from '@/types'
 
+type Role = 'hacker' | 'company-admin' | 'company-employee'
+
 interface User {
   id: number
   name: string
   username: string
   email: string
-  role: string
+  role: Role
 }
 
 export const useUserStore = defineStore('user-store', () => {

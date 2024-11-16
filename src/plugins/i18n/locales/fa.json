@@ -96,5 +96,7 @@
   "company": "شرکت",
   "write-message": "نوشتن پیام",
   "send": "ارسال",
-  "write-feedback": "نوشتن بازخورد"
+  "write-feedback": "نوشتن بازخورد",
+  "approved": "مورد قبول",
+  "duplicated": "تکراری"
 }

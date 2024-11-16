@@ -6,6 +6,7 @@ const components = {
   'destroy-dialog': () => defineAsyncComponent(() => import('@/components/DestroyDialog.vue')),
   'create-program-form': () => defineAsyncComponent(() => import('@/components/forms/programs/CreateProgram.vue')),
   'hacker-comment': () => defineAsyncComponent(() => import('@/components/dialogs/HackerComment.vue')),
+  'report-update-status': () => defineAsyncComponent(() => import('@/components/report/ChangeStatus.vue'))
 }
 
 export const useDialogStore = defineStore('dialog', () => {

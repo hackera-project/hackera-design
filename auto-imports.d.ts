@@ -125,6 +125,8 @@ declare global {
   const regexValidator: typeof import('./src/@core/utils/validators')['regexValidator']
   const registerPlugins: typeof import('./src/@core/utils/plugins')['registerPlugins']
   const registerPlugins_: typeof import('./src/@core/utils/plugins')['registerPlugins_']
+  const reportStatusColor: typeof import('./src/utils/options')['reportStatusColor']
+  const reportStatusOptions: typeof import('./src/utils/options')['reportStatusOptions']
   const requiredValidator: typeof import('./src/@core/utils/validators')['requiredValidator']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
@@ -133,6 +135,7 @@ declare global {
   const rgbaToHex: typeof import('./src/@core/utils/colorConverter')['rgbaToHex']
   const setActivePinia: typeof import('pinia')['setActivePinia']
   const setMapStoreSuffix: typeof import('pinia')['setMapStoreSuffix']
+  const severityOptions: typeof import('./src/utils/options')['severityOptions']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
@@ -486,6 +489,8 @@ declare module 'vue' {
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly regexValidator: UnwrapRef<typeof import('./src/@core/utils/validators')['regexValidator']>
     readonly registerPlugins: UnwrapRef<typeof import('./src/@core/utils/plugins')['registerPlugins']>
+    readonly reportStatusColor: UnwrapRef<typeof import('./src/utils/options')['reportStatusColor']>
+    readonly reportStatusOptions: UnwrapRef<typeof import('./src/utils/options')['reportStatusOptions']>
     readonly requiredValidator: UnwrapRef<typeof import('./src/@core/utils/validators')['requiredValidator']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
@@ -494,6 +499,7 @@ declare module 'vue' {
     readonly rgbaToHex: UnwrapRef<typeof import('./src/@core/utils/colorConverter')['rgbaToHex']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
+    readonly severityOptions: UnwrapRef<typeof import('./src/utils/options')['severityOptions']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
@@ -834,6 +840,8 @@ declare module '@vue/runtime-core' {
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly regexValidator: UnwrapRef<typeof import('./src/@core/utils/validators')['regexValidator']>
     readonly registerPlugins: UnwrapRef<typeof import('./src/@core/utils/plugins')['registerPlugins']>
+    readonly reportStatusColor: UnwrapRef<typeof import('./src/utils/options')['reportStatusColor']>
+    readonly reportStatusOptions: UnwrapRef<typeof import('./src/utils/options')['reportStatusOptions']>
     readonly requiredValidator: UnwrapRef<typeof import('./src/@core/utils/validators')['requiredValidator']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
@@ -842,6 +850,7 @@ declare module '@vue/runtime-core' {
     readonly rgbaToHex: UnwrapRef<typeof import('./src/@core/utils/colorConverter')['rgbaToHex']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
+    readonly severityOptions: UnwrapRef<typeof import('./src/utils/options')['severityOptions']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>

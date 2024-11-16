@@ -1,3 +1,4 @@
+import { useDialogStore } from '../dialog'
 import { useMessageBoxStore } from '../drawer/message-box'
 import type { Response } from '@/types'
 
@@ -49,6 +50,15 @@ export const useReportStore = defineStore('report-store', () => {
     fetch()
   }
 
+  const updateStatus = async () => {
+    
+    await useApi(`v1/reports/${currentId.value}`).put({ content })
+  }
+
+  const openUpdateStatus = () => {
+    useDialogStore().openDialog('report-update-status', '900px')
+  }
+
   const openFeedbackBox = () => {
     useMessageBoxStore().openMessageBox(sendFeedback)
   }
@@ -61,5 +71,6 @@ export const useReportStore = defineStore('report-store', () => {
     getId,
     sendFeedback,
     openFeedbackBox,
+    openUpdateStatus,
   }
 })
