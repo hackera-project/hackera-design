@@ -30,6 +30,10 @@ const router = createRouter({
       redirect: '/hacker/programs',
     },
     {
+      path: '/hacker',
+      redirect: '/hacker/programs',
+    },
+    {
       path: '/company',
       redirect: '/company/programs',
     },

@@ -1,47 +1,30 @@
 <script lang="ts" setup>
-const { t } = useI18n()
+import { useDialogStore } from '@/stores/dialog'
+import { headers, useReportsStore } from '@/stores/report'
+import {reportStatusColor } from '@/utils/options'
 
-const headers = [
-  { title: 'Company', key: 'company', sortable: false },
-  { title: 'Asset', key: 'asset', sortable: false },
-  { title: 'Reported at', key: 'reported_at', sortable: false },
-  { title: 'Status', key: 'status', sortable: false },
-  { title: 'Payment', key: 'payment', sortable: false },
-  { title: '', key: 'action', sortable: false },
-]
+const reportsStore = useReportsStore()
+const { reports, loading, page, meta } = storeToRefs(reportsStore)
 
-const items = [
-  { company: 'Digikala', asset: 'digikala.com', reported_at: '2022-12-03 14:20', status: 'in-progress', payment: '150' },
-  { company: 'Google', asset: 'google.com', reported_at: '2022-12-03 14:20', status: 'pending', payment: '' },
-  { company: 'Cafebazar', asset: 'com.android.cafebazar', reported_at: '2022-12-03 14:20', status: 'closed', payment: '400' },
-  { company: 'MTN', asset: '*.mtn.ir', reported_at: '2022-12-03 14:20', status: 'rejected', payment: '' },
-]
+reportsStore.fetch()
 
-const getStatusColor = (status: string) => {
-  if (status === 'pending')
-    return 'warning'
-
-  if (status === 'rejected')
-    return 'error'
-
-  if (status === 'closed')
-    return 'success'
-
-  return 'info'
-}
+const { openDialog } = useDialogStore()
 </script>
 
 <template>
-  <VCard :title="$t('reports')">
+  <VCard
+    :title="$t('reports')"
+    :loading="loading.fetch"
+  >
     <VCardText>
       <VDataTable
         :headers
-        :items
+        :items="reports"
       >
         <template #item.status="{ item }">
           <VChip
             :label="false"
-            :color="getStatusColor(item.status)"
+            :color="reportStatusColor(item.status)"
           >
             {{ $t(item.status) }}
           </VChip>
@@ -50,14 +33,25 @@ const getStatusColor = (status: string) => {
           <VBtn
             icon
             variant="text"
-          to="/reports/1"
+            to="/reports/1"
           >
             <VIcon icon="tabler-eye" />
+          </VBtn>
+          <VBtn
+            icon
+            variant="text"
+            @click="() => openDialog('hacker-comment', '500px')"
+          >
+            <VIcon icon="tabler-message" />
           </VBtn>
         </template>
         <template #bottom>
           <div class="d-flex justify-end mt-4">
-            <VPagination length="7" />
+            <VPagination
+              v-model="page"
+              :length="meta.last_page"
+              total-visible="7"
+            />
           </div>
         </template>
       </VDataTable>

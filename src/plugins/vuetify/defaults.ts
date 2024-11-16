@@ -27,14 +27,12 @@ export default {
   },
   VDataTable: {
     VPagination: {
-      showFirstLastPage: true,
       firstIcon: 'tabler-chevrons-left',
       lastIcon: 'tabler-chevrons-right',
     },
   },
   VDataTableServer: {
     VPagination: {
-      showFirstLastPage: true,
       firstIcon: 'tabler-chevrons-left',
       lastIcon: 'tabler-chevrons-right',
     },
@@ -64,7 +62,7 @@ export default {
     offset: '2px',
   },
   VPagination: {
-    density: 'comfortable',
+    density: 'compact',
     variant: 'tonal',
   },
   VTabs: {
@@ -120,7 +118,7 @@ export default {
     color: 'warning',
   },
   VProgressLinear: {
-    height: 6,
+    height: 4,
     roundedBar: true,
     rounded: true,
     bgColor: 'rgba(var(--v-track-bg))',

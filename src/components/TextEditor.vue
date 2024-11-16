@@ -89,7 +89,9 @@ watch(() => props.modelValue, () => {
 </script>
 
 <template>
-  <div :class="{ border: !preview }">
+  <div
+    :class="{ border: !preview }"
+  >
     <div
       v-if="editor && !preview"
       class="d-flex gap-2 py-2 px-6 flex-wrap align-center editor"
@@ -197,10 +199,15 @@ watch(() => props.modelValue, () => {
 
     <VDivider v-if="!preview" />
 
-    <EditorContent
-      ref="editorRef"
-      :editor="editor"
-    />
+    <div
+      class="overflow-auto"
+      :style="preview ? '' : 'height: 400px;'"
+    >
+      <EditorContent
+        ref="editorRef"
+        :editor="editor"
+      />
+    </div>
   </div>
 </template>
 
@@ -234,6 +241,7 @@ watch(() => props.modelValue, () => {
     font-family: 'JetBrainsMono', monospace;
     margin: 1.5rem 0;
     padding: 0.75rem 1rem;
+    direction: ltr;
 
     code {
       background: none;

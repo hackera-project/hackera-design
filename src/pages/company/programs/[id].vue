@@ -1,11 +1,25 @@
 <script setup lang="ts">
+import { router } from '@/plugins/1.router'
+import { useProgramUpdateStore } from '@/stores/program/update'
+
 const tab = ref('general')
+
+const programUpdateStore = useProgramUpdateStore()
+const { program, loading } = storeToRefs(programUpdateStore)
+const { fetch, setId } = programUpdateStore
+
+setId(Number(router.currentRoute.value.params.id))
+fetch()
 </script>
 
 <template>
   <div>
+    <VProgressLinear
+      v-if="loading.fetch"
+      indeterminate
+    />
     <div class="text-h4 mb-4">
-      Program Title
+      {{ program.title }}
     </div>
     <VCard>
       <VTabs

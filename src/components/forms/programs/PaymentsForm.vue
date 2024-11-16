@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-const enable = ref(true)
+import { useProgramPaymentsUpdateStore } from '@/stores/program/update/payments'
+
+const programForm = useProgramPaymentsUpdateStore()
+const { form, loading } = storeToRefs(programForm)
+const { update } = programForm
 </script>
 
 <template>
@@ -10,33 +14,116 @@ const enable = ref(true)
       </div>
       <div>
         <VSwitch
-          v-model="enable"
+          v-model="form.enable"
           size="large"
           :label="$t('enable')"
         />
       </div>
     </div>
 
-    <VRow class="mt-2">
-      <VCol cols="6">
+    <VRow
+      class="mt-2"
+      align="center"
+    >
+      <VCol cols="1">
+        {{ $t('low-severity') }}:
+      </VCol>
+
+      <VCol cols="2">
         <AppTextField
-          :label="$t('low-severity')"
-          :disabled="!enable"
+          v-model="form.low_severity.min"
+          :label="$t('min')"
+          :disabled="!form.enable"
+          type="number"
         />
       </VCol>
-      <VCol cols="6">
-        <AppTextField :label="$t('medium-severity')" :disabled="!enable" />
+      <VCol cols="2">
+        <AppTextField
+          v-model="form.low_severity.max"
+          :label="$t('max')"
+          :disabled="!form.enable"
+          type="number"
+        />
       </VCol>
-      <VCol cols="6">
-        <AppTextField :label="$t('high-severity')" :disabled="!enable" />
+
+      <VCol
+        cols="1"
+        offset="1"
+      >
+        {{ $t('medium-severity') }}:
       </VCol>
-      <VCol cols="6">
-        <AppTextField :label="$t('critical-severity')" :disabled="!enable" />
+
+      <VCol cols="2">
+        <AppTextField
+          v-model="form.medium_severity.min"
+          :label="$t('min')"
+          :disabled="!form.enable"
+          type="number"
+        />
+      </VCol>
+      <VCol cols="2">
+        <AppTextField
+          v-model="form.medium_severity.max"
+          :label="$t('max')"
+          :disabled="!form.enable"
+          type="number"
+        />
+      </VCol>
+    </VRow>
+
+    <VRow align="center">
+      <VCol cols="1">
+        {{ $t('high-severity') }}:
+      </VCol>
+
+      <VCol cols="2">
+        <AppTextField
+          v-model="form.high_severity.min"
+          :label="$t('min')"
+          :disabled="!form.enable"
+          type="number"
+        />
+      </VCol>
+      <VCol cols="2">
+        <AppTextField
+          v-model="form.high_severity.max"
+          :label="$t('max')"
+          :disabled="!form.enable"
+          type="number"
+        />
+      </VCol>
+
+      <VCol
+        cols="1"
+        offset="1"
+      >
+        {{ $t('critical-severity') }}:
+      </VCol>
+
+      <VCol cols="2">
+        <AppTextField
+          v-model="form.critical_severity.min"
+          :label="$t('min')"
+          :disabled="!form.enable"
+          type="number"
+        />
+      </VCol>
+      <VCol cols="2">
+        <AppTextField
+          v-model="form.critical_severity.max"
+          :label="$t('max')"
+          :disabled="!form.enable"
+          type="number"
+        />
       </VCol>
     </VRow>
 
     <div class="d-flex justify-end mt-4">
-      <VBtn :disabled="!enable">
+      <VBtn
+        :loading="loading"
+        :disabled="loading"
+        @click="update"
+      >
         {{ $t('save') }}
       </VBtn>
     </div>

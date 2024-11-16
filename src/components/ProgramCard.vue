@@ -1,15 +1,8 @@
 <script setup lang="ts">
-interface Asset {
-  count: number
-  type: string
-}
+import type { Program } from '@/stores/program'
 
 interface Props {
-  id: number
-  title: string
-  company: string
-  assets: Array<Asset>
-  logo: string
+  program: Program
 }
 
 defineProps<Props>()
@@ -18,46 +11,46 @@ defineProps<Props>()
 <template>
   <VCard
     class="h-100"
-    :to="`/hacker/programs/${id}`"
+    :to="`/hacker/programs/${program.id}`"
   >
     <VImg
-      :src="logo"
+      :src="program"
       width="100%"
       height="200"
     />
     <VCardTitle>
       <div>
-        {{ title }}
+        {{ program.title }}
       </div>
       <div class="text-subtitle-1">
-        {{ company }}
+        {{ program.company?.title }}
       </div>
     </VCardTitle>
 
     <VCardText>
       <div class="d-flex flex-wrap ga-2">
         <template
-          v-for="asset in assets"
-          :key="asset.tyep"
+          v-for="count, asset in program.assets"
+          :key="asset"
         >
           <VChip
             class="rounded-pill"
             color="info"
             size="small"
           >
-            {{ asset.count }}
+            {{ count }}
             <VDivider
               vertical
               class="mx-2"
             />
-            {{ asset.type }}
+            {{ $t(asset) }}
           </VChip>
         </template>
       </div>
     </VCardText>
 
     <VCardText class="text-h5 font-weight-bold">
-      100$ - 6000$
+      {{ program.payments.min }} - {{ program.payments.max }}
     </VCardText>
 
     <div class="d-flex justify-space-between px-4 pb-2">

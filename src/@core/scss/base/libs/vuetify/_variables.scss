@@ -38,6 +38,7 @@ $card-transition-property-custom: box-shadow, opacity;
 
   // 👉 Navigation Drawer
   $navigation-drawer-content-overflow-y: hidden !default,
+  $navigation-drawer-background: none !default,
 
   // 👉 Tooltip
   $tooltip-background-color: rgba(59, 55, 68, 0.9) !default,

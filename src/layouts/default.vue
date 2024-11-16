@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useUserStore } from '@/stores/auth/me';
 import { useConfigStore } from '@core/stores/config'
 import { AppContentLayoutNav } from '@layouts/enums'
 import { switchToVerticalNavOnLtOverlayNavBreakpoint } from '@layouts/utils'
@@ -29,6 +30,8 @@ watch([isFallbackStateActive, refLoadingIndicator], () => {
     refLoadingIndicator.value.resolveHandle()
 }, { immediate: true })
 // !SECTION
+
+useUserStore().fetch()
 </script>
 
 <template>
