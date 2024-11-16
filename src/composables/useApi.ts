@@ -49,8 +49,10 @@ export const useApi = createFetch({
     onFetchError(ctx) {
       const { data, response } = ctx
 
-      if (response?.status === 401)
+      if (response?.status === 401) {
         router.push('/login')
+        return ctx
+      }
 
       const parsedData = destr<Response<any>>(data)
       if (parsedData?.message)

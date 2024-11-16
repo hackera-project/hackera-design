@@ -9,6 +9,7 @@ interface User {
   username: string
   email: string
   role: Role
+  logo: string
 }
 
 export const useUserStore = defineStore('user-store', () => {
