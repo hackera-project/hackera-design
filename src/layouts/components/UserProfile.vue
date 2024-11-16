@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/auth/me'
-import avatar1 from '@images/avatars/avatar-1.png'
 
 const { user } = storeToRefs(useUserStore())
 const { logout } = useUserStore()
@@ -16,7 +15,7 @@ const { logout } = useUserStore()
       color="primary"
       variant="tonal"
     >
-      <VImg :src="avatar1" />
+      <VImg :src="user.logo" />
 
       <!-- SECTION Menu -->
       <VMenu
@@ -41,7 +40,7 @@ const { logout } = useUserStore()
                     color="primary"
                     variant="tonal"
                   >
-                    <VImg :src="avatar1" />
+                    <VImg :src="user.logo" />
                   </VAvatar>
                 </VBadge>
               </VListItemAction>
